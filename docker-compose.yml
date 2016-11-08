@@ -1,0 +1,26 @@
+web:
+    image: nginx_compose
+    ports:
+        - 80:80
+        - 443:443
+    links:
+        - mendixapp
+
+mendixapp:
+    image: mendix_compose
+    environment:
+        - DATABASEHOSTNAME=db:5432
+        - DATABASE_DB_NAME=mendix
+        - DATABASEUSERNAME=mendix
+        - DATABASEPASSWORD=mendix
+        - DATABASETYPE=PostgreSQL
+    ports:
+        - "8000"
+    links:
+        - db
+
+db:
+    image: postgres
+    environment:
+        - POSTGRES_USER=mendix
+        - POSTGRES_PASSWORD=mendix
