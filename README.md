@@ -22,14 +22,21 @@ requires an application "application.mda" to be provided
 ## Requirements
 
 * the container will need to be able to reach Internet
-* you need the mda of the application
-
+* you need the mda of the application and the configuration
+* docker and the ability to run a Makefile
 
 ## Use
 
+1. put your application mda in the mendix-docker-compose folder, name it application.mda
+1. put your application configuration in the mendix-docker-compose, name it m2ee.yaml
+1. build your containers with ~make build`
+1. start your docker-compose
+
+example:
 ```
-[put your application.mda in this folder]
-wget https://cdn.mendix.com/sample/sample-690.mda  -O application.mda
+git clone https://github.com/RaphaelAudet/mendix-docker-compose.git
+cd mendix-docker-compose
+wget https://cdn.mendix.com/sample/sample-690.mda -O application.mda
 wget https://cdn.mendix.com/sample/m2ee.compose.test.yaml  -O  m2ee.yaml
 make build
 docker-compose up
